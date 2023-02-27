@@ -33,15 +33,13 @@ def falsa_posicion(f, a, b, eps=1e-6, max_iter=100):
     return None
 
 def f(x):
-    return x**3 - 5*x**2 + 3*x + 7
+    return (-0.5) * (x ** 2) + (2.5  * x) + 4.5
 
-a = 0
-b = 4
+a = 6
+b = 7
 eps = 1e-6
 max_iter = 100
-
 x = falsa_posicion(f, a, b, eps, max_iter)
-
 if x is not None:
     print(f"La raíz aproximada es {x:.6f}")
 else:

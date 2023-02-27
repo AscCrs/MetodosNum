@@ -1,3 +1,5 @@
+import math
+
 def punto_fijo(g, x0, eps=1e-6, max_iter=100):
     """
     Encuentra una raíz de la función g(x) = x utilizando el método
@@ -22,9 +24,9 @@ def punto_fijo(g, x0, eps=1e-6, max_iter=100):
     return None
 
 def g(x):
-    return (x**3 + 5) / 2
+    return (math.e**x) - 2 - x
 
-x0 = 1
+x0 = 0
 eps = 1e-6
 max_iter = 100  
 

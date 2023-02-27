@@ -1,3 +1,5 @@
+import math
+
 def falsa_posicion(f, a, b, eps=1e-6, max_iter=100):
     """
     Encuentra una raíz de la función f en el intervalo [a, b]
@@ -33,10 +35,10 @@ def falsa_posicion(f, a, b, eps=1e-6, max_iter=100):
     return None
 
 def f(x):
-    return x**3 - 5*x**2 + 3*x + 7
+    return math.log(x**4) - 0.7
 
-a = 0
-b = 4
+a = 0.5
+b = 2
 eps = 1e-6
 max_iter = 100
 

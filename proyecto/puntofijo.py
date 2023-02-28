@@ -1,43 +1,30 @@
-def fixed_point_iteration(g, x0, tolerance, max_iterations):
+import math
+
+
+def fixed_point_iteration(x0, tol, max_iter):
     """
-    Implementa el método de iteración del punto fijo para encontrar una raíz de g(x)=x.
-
-    Args:
-        g (función): La función g(x) que se utiliza para la iteración del punto fijo.
-        x0 (float): El valor inicial de x para comenzar la iteración.
-        tolerance (float): La tolerancia de error para detener la iteración.
-        max_iterations (int): El número máximo de iteraciones permitido.
-
-    Returns:
-        Tuple: Un par que contiene el valor de la raíz encontrada y el número de iteraciones realizadas.
+    Método de punto fijo para resolver la ecuación x = cos(x)
+    :param x0: Valor inicial
+    :param tol: Tolerancia del error
+    :param max_iter: Número máximo de iteraciones
+    :return: Solución aproximada de la ecuación x = cos(x)
     """
-    x = x0
-    for i in range(max_iterations):
-        # Calcula la siguiente iteración
-        x_next = g(x)
-
-        # Calcula el error y verifica si se alcanzó la tolerancia
-        error = abs(x_next - x)
-        if error < tolerance:
-            return x_next, i + 1  # Devuelve la raíz y el número de iteraciones realizadas
-
-        # Muestra los resultados de esta iteración
-        print(
-            f"Iteración {i+1}: x={x:.6f}, g(x)={g(x):.6f}, error={error:.6f}")
-
-        # Actualiza el valor de x para la próxima iteración
-        x = x_next
-
-    # Si se alcanza el número máximo de iteraciones, devuelve un mensaje de error
-    raise ValueError(
-        "El método de iteración del punto fijo no converge después de {} iteraciones.".format(max_iterations))
+    print("Iteración 0: x = ", x0)
+    for i in range(1, max_iter+1):
+        x1 = math.cos(x0)
+        error = abs(x1 - x0)
+        print(f"Iteración {i}: x = {x1}, error = {error}")
+        if error < tol:
+            print(
+                f"\nSolución encontrada después de {i} iteraciones: x = {x1}")
+            return x1
+        x0 = x1
+    print("\nNúmero máximo de iteraciones alcanzado.")
+    return None
 
 
-def g(x):
-    return (1 - x**3)**(1/2)
+x0 = 1.0
+tol = 1e-6
+max_iter = 100
 
-
-root, num_iterations = fixed_point_iteration(
-    g, x0=0.5, tolerance=1e-6, max_iterations=10000)
-print(
-    f"\nLa raíz encontrada es x={root:.6f} después de {num_iterations} iteraciones.")
+fixed_point_iteration(x0, tol, max_iter)

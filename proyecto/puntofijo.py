@@ -1,30 +1,42 @@
 import math
 
 
-def fixed_point_iteration(x0, tol, max_iter):
+def f(x):
+    return math.cos(x)
+
+
+def g(x):
+    return f(x) + x
+
+
+def punto_fijo(g, x0, tol, max_iter):
     """
-    Método de punto fijo para resolver la ecuación x = cos(x)
+    Implementación del método de punto fijo
+    :param g: Función g(x) a evaluar
     :param x0: Valor inicial
-    :param tol: Tolerancia del error
+    :param tol: Tolerancia de error
     :param max_iter: Número máximo de iteraciones
-    :return: Solución aproximada de la ecuación x = cos(x)
+    :return: Aproximación de la solución de la ecuación g(x) = x
     """
-    print("Iteración 0: x = ", x0)
-    for i in range(1, max_iter+1):
-        x1 = math.cos(x0)
-        error = abs(x1 - x0)
-        print(f"Iteración {i}: x = {x1}, error = {error}")
-        if error < tol:
-            print(
-                f"\nSolución encontrada después de {i} iteraciones: x = {x1}")
-            return x1
-        x0 = x1
-    print("\nNúmero máximo de iteraciones alcanzado.")
-    return None
+    x = x0
+    iter = 0
+    error = tol + 1
+    print("Iteración\t\t x\t\t\t\t error")
+    print("-"*50)
+    while error > tol and iter < max_iter:
+        x_ant = x
+        x = g(x_ant)
+        iter += 1
+        error = abs(x - x_ant)
+        print("{:d}\t\t\t {:.10f}\t\t {:.10f}".format(iter, x, error))
+    print("-"*50)
+    if iter == max_iter:
+        print("El método de punto fijo no converge en {} iteraciones".format(max_iter))
+        return None
+    else:
+        print("La aproximación de la solución es: {:.10f}".format(x))
+        return x
 
 
-x0 = 1.0
-tol = 1e-6
-max_iter = 100
-
-fixed_point_iteration(x0, tol, max_iter)
+# Ejemplo de uso
+punto_fijo(g, 1, 1e-5, 100)

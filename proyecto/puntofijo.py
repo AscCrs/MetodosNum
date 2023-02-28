@@ -1,42 +1,43 @@
-import math
+# Algoritmo de punto fijo
+# [a,b] intervalo de búsqueda
+# error = tolera
+
+import numpy as np
 
 
-def f(x):
-    return math.cos(x)
+def puntofijo(gx, a, tolera, iteramax=15):
+    i = 1  # iteración
+    b = gx(a)
+    tramo = abs(b-a)
+    while (tramo >= tolera and i <= iteramax):
+        a = b
+        b = gx(a)
+        tramo = abs(b-a)
+        i = i + 1
+    respuesta = b
+
+    # Validar respuesta
+    if (i >= iteramax):
+        respuesta = np.nan
+    return (respuesta)
+
+# PROGRAMA ---------
 
 
-def g(x):
-    return f(x) + x
+# INGRESO
+def fx(x): return np.exp(-x) - x
+def gx(x): return np.exp(-x)
 
 
-def punto_fijo(g, x0, tol, max_iter):
-    """
-    Implementación del método de punto fijo
-    :param g: Función g(x) a evaluar
-    :param x0: Valor inicial
-    :param tol: Tolerancia de error
-    :param max_iter: Número máximo de iteraciones
-    :return: Aproximación de la solución de la ecuación g(x) = x
-    """
-    x = x0
-    iter = 0
-    error = tol + 1
-    print("Iteración\t\t x\t\t\t\t error")
-    print("-"*50)
-    while error > tol and iter < max_iter:
-        x_ant = x
-        x = g(x_ant)
-        iter += 1
-        error = abs(x - x_ant)
-        print("{:d}\t\t\t {:.10f}\t\t {:.10f}".format(iter, x, error))
-    print("-"*50)
-    if iter == max_iter:
-        print("El método de punto fijo no converge en {} iteraciones".format(max_iter))
-        return None
-    else:
-        print("La aproximación de la solución es: {:.10f}".format(x))
-        return x
+a = 0       # intervalo
+b = 1
+tolera = 0.001
+iteramax = 15  # itera máximo
+muestras = 51  # gráfico
+tramos = 50
 
+# PROCEDIMIENTO
+respuesta = puntofijo(gx, a, tolera)
 
-# Ejemplo de uso
-punto_fijo(g, 1, 1e-5, 100)
+# SALIDA
+print("La raiz aproximada esta en: ", respuesta)

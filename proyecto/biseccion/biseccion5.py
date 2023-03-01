@@ -3,8 +3,8 @@ import math
 tol = 1e-6
 
 # Limite inferior: 0
-# Limite superior: 2
-# Esperado: 1.9999995231628418
+# Limite superior: 1
+# Esperado: 0.9999995231628418
 
 
 def f(x):

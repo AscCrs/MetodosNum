@@ -1,3 +1,6 @@
+import math
+
+
 def falsa_posicion(f, a, b, eps=1e-6, max_iter=100):
     """
     Encuentra una raíz de la función f en el intervalo [a, b]
@@ -32,15 +35,18 @@ def falsa_posicion(f, a, b, eps=1e-6, max_iter=100):
     print("Error: se alcanzó el número máximo de iteraciones.")
     return None
 
-def f(x):
-    return (-0.5) * (x ** 2) + (2.5  * x) + 4.5
 
-a = 6
-b = 7
+def f(x):
+    return 4 * math.pow(x, 3) - 6 * math.pow(x, 2) + 7 * x - 2.3
+
+
+a = 0  # Limite inferior
+b = 1  # Limite superior
 eps = 1e-6
 max_iter = 100
 x = falsa_posicion(f, a, b, eps, max_iter)
 if x is not None:
+    # Esperado: 0.450124
     print(f"La raíz aproximada es {x:.6f}")
 else:
     print("No se ha encontrado la raiz")

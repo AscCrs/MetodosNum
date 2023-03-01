@@ -1,16 +1,17 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import math
 
 # Definimos la función a resolver
 
 
 def f(x):
-    return x**2 + 2*x - 5
+    return 4 * (x ** 3) - 6 * (x ** 2) + 7 * x - 2.3
 
 
 # Definimos el intervalo donde buscamos la solución
-a = -4
-b = 2
+a = 0
+b = 1
 
 # Generamos un arreglo de valores para x
 x = np.linspace(a, b, 100)
@@ -33,7 +34,7 @@ plt.ylabel('y')
 plt.title('Método gráfico')
 
 # Definimos un valor inicial para x
-x0 = -3
+x0 = 0
 
 # Definimos la tolerancia del método
 tolerancia = 1e-6

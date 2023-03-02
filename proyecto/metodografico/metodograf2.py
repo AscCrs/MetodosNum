@@ -5,12 +5,12 @@ import numpy as np
 
 
 def f(x):
-    return x**2 + 2*x - 5
+    return (x ** 3) - (2 * x) - 5
 
 
 # Definimos el intervalo donde buscamos la solución
-a = -4
-b = 2
+a = 1
+b = 3
 
 # Generamos un arreglo de valores para x
 x = np.linspace(a, b, 100)
@@ -33,7 +33,7 @@ plt.ylabel('y')
 plt.title('Método gráfico')
 
 # Definimos un valor inicial para x
-x0 = -3
+x0 = 1
 
 # Definimos la tolerancia del método
 tolerancia = 1e-6
@@ -69,3 +69,6 @@ plt.show()
 
 # Imprimimos la solución encontrada
 print(f"La solución es x = {x0}")
+
+
+# Esperado: 2.094551481567731

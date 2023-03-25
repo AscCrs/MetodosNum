@@ -24,4 +24,4 @@ def biseccion(min, max):
 limin = float(input("Ingrese el limite inferior: "))
 limax = float(input("Ingrese el limite superior: "))
 
-print("Raíz aproximada en: " + str(biseccion(limin, limax)))
+print("Raíz aproximada en : " + str(biseccion(limin, limax)))

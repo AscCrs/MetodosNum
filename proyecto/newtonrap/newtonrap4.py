@@ -37,11 +37,11 @@ def newton_raphson(f, df, x0, tol, max_iter):
 
 
 def f(x):
-    return math.exp(x) - (3 * x)
+    return math.exp(x) - 2 - x
 
 
 def df(x):
-    return math.exp(x) - 3
+    return math.exp(x) - 1
 
 
 x0 = 0  # Valor inicial

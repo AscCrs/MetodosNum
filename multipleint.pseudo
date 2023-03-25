@@ -1,0 +1,64 @@
+do Function integrate_rectangles(f, a, b, n)
+    h = (b - a) / n              // Calcula el ancho de cada subintervalo
+    sum = 0                      // Inicializa la suma en cero
+    for i = 0 to n - 1 do        // Ciclo for para sumar el área de los rectángulos
+        x_i = a + (i + 0.5) * h  // Calcula la posición del centro del rectángulo
+        sum = sum + f(x_i)       // Suma el valor de f(x_i)
+    end for
+    integral = h * sum           // Calcula el valor de la integral
+    return integral              // Retorna el valor de la integral
+End Function
+
+do Function integrate_trapezoidal(f, a, b, n)
+    h = (b - a) / n             // Calcula el anocho del subintervalo
+    sum = f(a) + f(b)           // Suma los valores de f(a) y f(b)
+    for i = 1 to n-1 do         // El bucle for suma los valores de f(x_i)
+        x_i = a + i*h           // Calculo del valor para x_i
+        sum = sum + 2 * f(x_i)  // Suma el valor de f(x_i) multiplicado por 2
+    end for
+    integral = (h/2) * sum      // Calculo del valor de la integral
+    return integral             // Retorno del valor de la integral
+End Function
+
+do Function integrate_simpson(f, a, b, n)
+    h = (b - a) / n                 // Calcula el ancho del subintervalo
+    sum = f(a) + f(b)               // Suma los valores de f(a) y f(b)
+    for i = 1 to n-1 do             // Ciclo for para sumar los valores de f(x_i)
+        x_i = a + i*h               // Calcula el valor de x_i
+        if i % 2 == 0 then          // Si i es par
+            sum = sum + 2 * f(x_i)  // Suma el valor de f(x_i) multiplicado por 2
+        else
+            sum = sum + 4 * f(x_i)  // Suma el valor de f(x_i) multiplicado por 4
+        end if
+    end for
+    integral = (h/3) * sum          // Calcula el valor de la integral
+    return integral                 // Retorna el valor de la integral
+End Function
+
+
+do Function integrate_gauss(f, a, b, n)
+    x, w = gauss_legendre(n)                                                  // Obtiene los nodos y pesos de la cuadratura de Gauss-Legendre
+    integral = 0                                                              // Inicializa la integral en cero
+    for i = 1 to n do                                                         // Ciclo for para sumar los valores de f(x_i) ponderados por w_i
+        integral = integral + w(i) * f(0.5 * (b - a) * x(i) + 0.5 * (b + a))  // Suma el valor de f(x_i) ponderado por w_i
+    end for
+    integral = 0.5 * (b - a) * integral                                       // Calcula el valor de la integral
+    return integral                                                           // Retorna el valor de la integral
+End Function
+
+do Function gauss_legendre(n)
+    x = zeros(n)  // Inicializa el vector de nodos en cero
+    w = zeros(n)  // Inicializa el vector de pesos en cero
+    m = (n
+End Function
+
+do Function integrate_montecarlo(f, a, b, n)
+    sum = 0                         // Inicializa la suma en cero
+    for i = 1 to n do               // Ciclo for para sumar los valores aleatorios de f(x_i)
+        x_i = a + (b - a) * rand()  // Genera un valor aleatorio x_i
+        sum = sum + f(x_i)          // Suma el valor de f(x_i)
+    end for
+    integral = ((b - a) / n) * sum  // Calcula el valor de la integral
+    return integral                 // Retorna el valor de la integral
+End Function
+

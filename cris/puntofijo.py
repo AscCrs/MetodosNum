@@ -22,7 +22,7 @@ def punto_fijo(f, x0, tolerancia, max_iter):
 
 
 def f(x):
-    return x**2 - 2
+    return 5 * x + 2 * x - 3
 
 
 x0 = 1

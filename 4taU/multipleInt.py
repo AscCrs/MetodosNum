@@ -90,7 +90,6 @@ def gaussian_quadrature_integration(f, a, b, n):
     # Realiza la integración por el método de cuadratura Gaussiana
     return np.sum(wp*f(xp))
 
-
 """
 Función para realizar la integración mediante el método del rectangulo
 
